@@ -2,9 +2,12 @@ package principal;
 
 import java.awt.Container;
 import java.awt.event.*;
+import java.io.BufferedReader;
+import java.io.FileReader;
 import java.util.Hashtable;
 
 import javax.swing.*;
+
 
 public class VentanaPrincipal extends JFrame implements ActionListener {
 	private JTextField campoNit;
@@ -132,6 +135,21 @@ private void initiailize()	{
 		if(e.getSource()==btnEliminar) {
 			eliminarPersona(tablaPersonas);
 		}
+		/*if(e.getSource()==btnCargaLista) {
+			int id=1;
+			BufferedReader br = new BufferedReader(new FileReader("C:\\Users\\Ricardo\\eclipse-workspace\\HashtableGrafico\\src\\principal\\ListaC.csv")); 
+			String line;
+			
+			while ((line = br.readLine()) != null) { 
+			    // use comma as separator 
+			    String[] cols = line.split(";"); 
+				
+				PersonaVo pers = new PersonaVo(id++,cols[0], cols[1], cols[2]);
+				PersonasL.add(pers);
+				System.out.println("Elemento Agregado "+id); 
+				
+			} 
+		}*/
 	}
 
 	private void eliminarPersona(Hashtable<String, PersonaVo> tablaPersonas2) {
@@ -166,11 +184,7 @@ private void initiailize()	{
 
 	//ingresar personas
 	private void registrarPersona(Hashtable<String, PersonaVo> tablaPersonas) {
-		PersonaVo miPersona=new PersonaVo();
-		miPersona.setNit(campoNit.getText());
-		miPersona.setNombre(campoNombre.getText());
-		miPersona.setNlugar(Integer.parseInt(campoNlugar.getText()));
-		miPersona.setFechaNacimiento(CampoFechaNacimiento.getText());
+		PersonaVo miPersona=new PersonaVo(Integer.parseInt(campoNlugar.getText()),campoNit.getText(), campoNombre.getText(), CampoFechaNacimiento.getText());
 		//valida no repetir personas
 		
 		if (tablaPersonas.containsKey(miPersona.getNit())==false) {
