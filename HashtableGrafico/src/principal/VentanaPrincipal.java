@@ -1,11 +1,14 @@
 package principal;
 
-import java.awt.Container;
+import ConfiguracionHash.*;
+
+import java.awt.HeadlessException;
 import java.awt.event.*;
 import java.io.BufferedReader;
+import java.io.FileNotFoundException;
 import java.io.FileReader;
+import java.io.IOException;
 import java.util.Hashtable;
-
 import javax.swing.*;
 
 
@@ -135,21 +138,16 @@ private void initiailize()	{
 		if(e.getSource()==btnEliminar) {
 			eliminarPersona(tablaPersonas);
 		}
-		/*if(e.getSource()==btnCargaLista) {
-			int id=1;
-			BufferedReader br = new BufferedReader(new FileReader("C:\\Users\\Ricardo\\eclipse-workspace\\HashtableGrafico\\src\\principal\\ListaC.csv")); 
-			String line;
-			
-			while ((line = br.readLine()) != null) { 
-			    // use comma as separator 
-			    String[] cols = line.split(";"); 
-				
-				PersonaVo pers = new PersonaVo(id++,cols[0], cols[1], cols[2]);
-				PersonasL.add(pers);
-				System.out.println("Elemento Agregado "+id); 
-				
-			} 
-		}*/
+		//cargar los archivos desde csv
+		if(e.getSource()==btnCargaLista) {
+			try {
+				cargarPersona(tablaPersonas);
+			} catch (HeadlessException | IOException e1) {
+				// TODO Auto-generated catch block
+				e1.printStackTrace();
+			}
+	
+		}
 	}
 
 	private void eliminarPersona(Hashtable<String, PersonaVo> tablaPersonas2) {
@@ -173,7 +171,7 @@ private void initiailize()	{
 			//mapeo de informacion que se mostrara en un mensaje
 			mensaje+="Nit: "+ persona.getNit()+"\n";
 			mensaje+="Nombre: "+ persona.getNombre()+"\n";
-			mensaje+="Fecha: "+ persona.getNlugar()+"\n";
+			mensaje+="Lugar: "+ persona.getNlugar()+"\n";
 			mensaje+="FechaNacimiento: "+persona.getFechaNacimiento()+"\n";
 			//se imprime msj
 			JOptionPane.showMessageDialog(null, mensaje);
@@ -196,6 +194,30 @@ private void initiailize()	{
 		}
 		
 		
+	}
+	
+	private void cargarPersona(Hashtable<String, PersonaVo> tablaPersonas) throws HeadlessException, IOException {
+		try {
+			BufferedReader br = new BufferedReader(new FileReader("C:\\Users\\Ricardo\\eclipse-workspace\\HashtableGrafico\\src\\principal\\ListaC.csv"));
+			String line;
+			int id=1;
+			while ((line = br.readLine()) != null) { 
+			    // use comma as separator 
+			    String[] cols = line.split(";"); 
+				PersonaVo pers = new PersonaVo(id++,cols[0], cols[1], cols[2]);
+				if (tablaPersonas.containsKey(pers.getNit())==false) {
+					tablaPersonas.put(pers.getNit(), pers);
+					System.out.print("Registro realizado");
+					limpiarCampos();
+				}else {
+					JOptionPane.showMessageDialog(null,"Persona no encontrada "," ERROR ",JOptionPane.ERROR_MESSAGE);
+				}
+				System.out.println("Elemento Agregado "+id); 
+			}
+		} catch (FileNotFoundException e) {
+			// TODO Auto-generated catch block
+			e.printStackTrace();
+		}
 	}
 
 	private void limpiarCampos() {
