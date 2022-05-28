@@ -1,7 +1,5 @@
 package principal;
 
-import ConfiguracionHash.*;
-
 import java.awt.HeadlessException;
 import java.awt.event.*;
 import java.io.BufferedReader;

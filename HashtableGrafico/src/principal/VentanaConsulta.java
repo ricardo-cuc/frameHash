@@ -20,17 +20,17 @@ public class VentanaConsulta extends JDialog {
 	}
 	
 	private void initialize() {
-		setSize(300,208);
+		setSize(400,400);
 		getContentPane().setLayout(null);
 		
 		textArea=new JTextArea();
 		textArea.setBounds(10,50,264,102);
 		
 		scrollArea = new JScrollPane();
-		scrollArea.setBounds(10,50,264,102);
+		scrollArea.setBounds(10,50,374,306);
 		
 		scrollArea = new JScrollPane();
-		scrollArea.setBounds(10,50,264,102);
+		scrollArea.setBounds(10,50,364,302);
 		scrollArea.setViewportView(textArea);
 		getContentPane().add(scrollArea);
 		
@@ -46,7 +46,7 @@ public class VentanaConsulta extends JDialog {
 		while(elemento.hasMoreElements()) {
 			PersonaVo personaVo = elemento.nextElement();
 			mensaje+="Nit: "+personaVo.getNit()+"    Nombre"+personaVo.getNombre()+"\n";
-			mensaje+="Edad: "+personaVo.getNlugar()+"    Fecha Nacimiento"+personaVo.getFechaNacimiento()+"\n\n";
+			mensaje+="Silla: "+personaVo.getNlugar()+"    Fecha Nacimiento"+personaVo.getFechaNacimiento()+"\n\n";
 		}
 		//llamamos el mapeo de los datos que realizamos
 		textArea.setText(mensaje);
