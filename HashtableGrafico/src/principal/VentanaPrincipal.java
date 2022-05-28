@@ -8,9 +8,9 @@ import javax.swing.*;
 
 public class VentanaPrincipal extends JFrame implements ActionListener {
 	private JTextField campoNit;
-	private JTextField campoFnacimiento;
+	private JTextField campoNlugar;
 	private JTextField campoNombre;
-	private JTextField CampoDireccion;
+	private JTextField CampoFechaNacimiento;
 	private JButton btnEliminar;
 	private JButton btnBuscar;
 	private JButton btnRegistrar;
@@ -41,7 +41,7 @@ private void initiailize()	{
 		lblNit.setBounds(10,45,79,14);
 		getContentPane().add(lblNit);
 		
-		JLabel lblEdad=new JLabel ("Edad");
+		JLabel lblEdad=new JLabel ("Silla");
 		lblEdad.setBounds(198,45,50,14);
 		getContentPane().add(lblEdad);	
 
@@ -50,10 +50,11 @@ private void initiailize()	{
 		lblNombre.setBounds(10,74,86,14);
 		getContentPane().add(lblNombre);
 		
-		//Campo direcciones
-		JLabel lblDireccion = new JLabel("Direccion");
-		lblDireccion.setBounds(10,105,86,14);
-		getContentPane().add(lblDireccion);
+
+		//Campo FechaNacimientoes
+		JLabel lblFechaNacimiento = new JLabel("F. de Na.");
+		lblFechaNacimiento.setBounds(10,105,86,14);
+		getContentPane().add(lblFechaNacimiento);
 		
 		
 		campoNit = new JTextField();
@@ -62,21 +63,21 @@ private void initiailize()	{
 		getContentPane().add(campoNit);
 
 		
-		campoFnacimiento = new JTextField();
-		campoFnacimiento.setColumns(10);
-		campoFnacimiento.setBounds(232,42,86,20);
-		getContentPane().add(campoFnacimiento);
+		campoNlugar = new JTextField();
+		campoNlugar.setColumns(10);
+		campoNlugar.setBounds(232,42,86,20);
+		getContentPane().add(campoNlugar);
 		
 		campoNombre = new JTextField();
 		campoNombre.setColumns(10);
 		campoNombre.setBounds(85,71,233,20);
 		getContentPane().add(campoNombre);
 		
-		//Evento para campo direccion
-		CampoDireccion = new JTextField();
-		CampoDireccion.setColumns(10);
-		CampoDireccion.setBounds(85,104,233,20);
-		getContentPane().add(CampoDireccion);
+		//Evento para campo FechaNacimiento
+		CampoFechaNacimiento = new JTextField();
+		CampoFechaNacimiento.setColumns(10);
+		CampoFechaNacimiento.setBounds(85,104,233,20);
+		getContentPane().add(CampoFechaNacimiento);
 		
 
 		
@@ -147,8 +148,8 @@ private void initiailize()	{
 			//mapeo de informacion que se mostrara en un mensaje
 			mensaje+="Nit: "+ persona.getNit()+"\n";
 			mensaje+="Nombre: "+ persona.getNombre()+"\n";
-			mensaje+="Fecha: "+ persona.getFnacimiento()+"\n";
-			mensaje+="Direccion: "+persona.getDireccion()+"\n";
+			mensaje+="Fecha: "+ persona.getNlugar()+"\n";
+			mensaje+="FechaNacimiento: "+persona.getFechaNacimiento()+"\n";
 			//se imprime msj
 			JOptionPane.showMessageDialog(null, mensaje);
 		}else {
@@ -161,8 +162,8 @@ private void initiailize()	{
 		PersonaVo miPersona=new PersonaVo();
 		miPersona.setNit(campoNit.getText());
 		miPersona.setNombre(campoNombre.getText());
-		miPersona.setFnacimiento(Integer.parseInt(campoFnacimiento.getText()));
-		miPersona.setDireccion(CampoDireccion.getText());
+		miPersona.setNlugar(Integer.parseInt(campoNlugar.getText()));
+		miPersona.setFechaNacimiento(CampoFechaNacimiento.getText());
 		//valida no repetir personas
 		if (tablaPersonas.containsKey(miPersona.getNit())==false) {
 			tablaPersonas.put(miPersona.getNit(), miPersona);
@@ -176,9 +177,9 @@ private void initiailize()	{
 	}
 
 	private void limpiarCampos() {
-		CampoDireccion.setText("");
+		CampoFechaNacimiento.setText("");
 		campoNit.setText("");
-		campoFnacimiento.setText("");
+		campoNlugar.setText("");
 		campoNombre.setText("");
 		
 	}

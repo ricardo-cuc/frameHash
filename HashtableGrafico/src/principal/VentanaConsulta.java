@@ -34,7 +34,7 @@ public class VentanaConsulta extends JDialog {
 		scrollArea.setViewportView(textArea);
 		getContentPane().add(scrollArea);
 		
-		JLabel lblConsultaDePersona = new JLabel("CONSULTA DE PERSONAS");
+		JLabel lblConsultaDePersona = new JLabel("CONSULTA DE SILLAS");
 		lblConsultaDePersona.setBounds(10,11,153,23);
 		getContentPane().add(lblConsultaDePersona);
 	}
@@ -46,7 +46,7 @@ public class VentanaConsulta extends JDialog {
 		while(elemento.hasMoreElements()) {
 			PersonaVo personaVo = elemento.nextElement();
 			mensaje+="Nit: "+personaVo.getNit()+"    Nombre"+personaVo.getNombre()+"\n";
-			mensaje+="Edad: "+personaVo.getFnacimiento()+"    Fecha N"+personaVo.getFnacimiento()+"\n\n";
+			mensaje+="Edad: "+personaVo.getNlugar()+"    Fecha Nacimiento"+personaVo.getFechaNacimiento()+"\n\n";
 		}
 		//llamamos el mapeo de los datos que realizamos
 		textArea.setText(mensaje);
