@@ -1,6 +1,6 @@
 package principal;
 
-public class Aplicacion {
+public class AplicacionTeatro {
 
 
 	public static void main(String[] args) {
