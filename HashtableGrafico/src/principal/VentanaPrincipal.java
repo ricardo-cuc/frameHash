@@ -15,6 +15,7 @@ public class VentanaPrincipal extends JFrame implements ActionListener {
 	private JButton btnBuscar;
 	private JButton btnRegistrar;
 	private JButton btnConsultarLista;
+	private JButton btnCargaLista;
 	
 	//hash table
 	Hashtable<String,PersonaVo> tablaPersonas;
@@ -22,7 +23,7 @@ public class VentanaPrincipal extends JFrame implements ActionListener {
 	
 	public VentanaPrincipal () {
 		initiailize();
-		setSize(350,245);
+		setSize(350,275);
 		setDefaultCloseOperation(JFrame.EXIT_ON_CLOSE);
 		setLocationRelativeTo(null);
 		tablaPersonas=new Hashtable<String, PersonaVo>();
@@ -81,7 +82,11 @@ private void initiailize()	{
 		
 
 		
-
+		//Boton Cargar Elementos
+		btnCargaLista = new JButton("Cargar Csv");
+		btnCargaLista.setBounds(71,200,188,23);
+		btnCargaLista.addActionListener(this);
+		getContentPane().add(btnCargaLista);
 		
 		//Boton Eliminar
 		btnEliminar = new JButton("Eliminar");
@@ -95,17 +100,19 @@ private void initiailize()	{
 		btnBuscar.addActionListener(this);
 		getContentPane().add(btnBuscar);
 		
-		//Configuracion  Registro
+		//Boton  Registro
 		btnRegistrar = new JButton ("Registrar");
 		btnRegistrar.setBounds(10,145,99,23);
 		btnRegistrar.addActionListener(this);
 		getContentPane().add(btnRegistrar);
 		
-		//configuracion boton para consultar Lista
+		//Boton consultar Lista
 		btnConsultarLista = new JButton("Consultar Lista");
 		btnConsultarLista.setBounds(71,173,188,23);
 		btnConsultarLista.addActionListener(this);
 		getContentPane().add(btnConsultarLista);
+		
+		
 	}
 	
 	@Override
@@ -153,7 +160,7 @@ private void initiailize()	{
 			//se imprime msj
 			JOptionPane.showMessageDialog(null, mensaje);
 		}else {
-			JOptionPane.showMessageDialog(null,"Persona ya existe ","Adveretencia",JOptionPane.WARNING_MESSAGE);
+			JOptionPane.showMessageDialog(null,"No existe","Adveretencia",JOptionPane.WARNING_MESSAGE);
 		}
 	}
 
@@ -165,6 +172,7 @@ private void initiailize()	{
 		miPersona.setNlugar(Integer.parseInt(campoNlugar.getText()));
 		miPersona.setFechaNacimiento(CampoFechaNacimiento.getText());
 		//valida no repetir personas
+		
 		if (tablaPersonas.containsKey(miPersona.getNit())==false) {
 			tablaPersonas.put(miPersona.getNit(), miPersona);
 			System.out.print("Registro realizado");
